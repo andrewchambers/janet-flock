@@ -139,4 +139,4 @@ static const JanetReg cfuns[] = {
      "release file lock."},
     {NULL, NULL, NULL}};
 
-JANET_MODULE_ENTRY(JanetTable *env) { janet_cfuns(env, "redis", cfuns); }
+JANET_MODULE_ENTRY(JanetTable *env) { janet_cfuns(env, "flock", cfuns); }

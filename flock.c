@@ -79,6 +79,8 @@ static Janet flock_acquire(int32_t argc, Janet *argv) {
   Flock *l;
   if (argc == 4) {
     l = (Flock *)janet_getabstract(argv, 3, &flock_type);
+    if (l->fd != -1)
+      janet_panic("lock object already represents an active lock");
   } else {
     l = (Flock *)janet_abstract(&flock_type, sizeof(Flock));
     l->fd = -1;
@@ -106,6 +108,12 @@ static Janet flock_acquire(int32_t argc, Janet *argv) {
   return janet_wrap_abstract(l);
 }
 
+static Janet flock_locked(int32_t argc, Janet *argv) {
+  janet_fixarity(argc, 1);
+  Flock *l = (Flock *)janet_getabstract(argv, 0, &flock_type);
+  return janet_wrap_boolean(l->fd != -1);
+}
+
 static Janet flock_release(int32_t argc, Janet *argv) {
   janet_fixarity(argc, 1);
   Flock *l = (Flock *)janet_getabstract(argv, 0, &flock_type);
@@ -123,6 +131,9 @@ static const JanetReg cfuns[] = {
      "with waitmode :block|:noblock and mode :shared|:exclusive."
      "returns the lock, if the lock is non blocking, returns nil is the"
      "lock was already held in an incompatible way."},
+    {"locked?", flock_locked,
+     "(flock/locked? l)\n\n"
+     "Check if the lock object has aquired a lock."},
     {"release", flock_release,
      "(flock/release l)\n\n"
      "release file lock."},

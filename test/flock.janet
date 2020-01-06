@@ -8,6 +8,9 @@
 (when l3 (error "expected lock failure"))
 
 (set l3 (flock/new))
+(when (flock/locked? l3)
+  (error "expected not locked"))
+
 (flock/release l2)
 
 (when (flock/acquire "/tmp/janet-flock-test.lock" :noblock :exclusive l3)
@@ -17,6 +20,9 @@
 
 (unless (flock/acquire "/tmp/janet-flock-test.lock" :noblock :exclusive l3)
   (error "expected lock success"))
+
+(unless (flock/locked? l3)
+  (error "expected locked"))
 
 (:close l3)
 

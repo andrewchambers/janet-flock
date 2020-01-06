@@ -13,7 +13,7 @@ Simple file locking with flock for janet.
 (unless l2 (error "expected lock success"))
 (when l3 (error "expected lock failure"))
 
-(with (flock/acquire ...)
+(with [l (flock/acquire ...)]
   ...)
 ```
 

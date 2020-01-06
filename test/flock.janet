@@ -18,6 +18,7 @@
 (unless (flock/acquire "/tmp/janet-flock-test.lock" :noblock :exclusive l3)
   (error "expected lock success"))
 
+(:close l3)
 
-(when (flock/acquire "/tmp/janet-flock-test.lock" :noblock :shared l2)
-  (error "expected lock failure"))
+(unless (flock/acquire "/tmp/janet-flock-test.lock" :noblock :shared)
+  (error "expected lock success"))

@@ -129,7 +129,7 @@ static const JanetReg cfuns[] = {
      "(flock/acquire path wait-mode mode &opt flock)\n\n"
      "Open (potentially creating the file) an flock at path,"
      "with waitmode :block|:noblock and mode :shared|:exclusive."
-     "returns the lock, if the lock is non blocking, returns nil is the"
+     " Returns the lock, if the lock is non blocking, returns nil is the"
      "lock was already held in an incompatible way."},
     {"locked?", flock_locked,
      "(flock/locked? l)\n\n"

@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include <errno.h>
 #include <fcntl.h>
 #include <janet.h>
@@ -42,8 +43,7 @@ static int flock_get(void *ptr, Janet key, Janet *out) {
 }
 
 static const JanetAbstractType flock_type = {
-    "flock.flock", flock_gc, NULL, flock_get, NULL,
-    NULL,          NULL,     NULL, NULL,      NULL};
+    "flock.flock", flock_gc, NULL, flock_get, JANET_ATEND_GET};
 
 static Janet flock_new(int32_t argc, Janet *argv) {
   (void)argv;
@@ -87,7 +87,7 @@ static Janet flock_acquire(int32_t argc, Janet *argv) {
   }
 
   do {
-    l->fd = open(lpath, /* XXX we want this O_CLOEXEC | */ O_CREAT, S_IRWXU);
+    l->fd = open(lpath, O_CLOEXEC |O_CREAT, S_IRWXU);
   } while (l->fd == -1 && errno == EINTR);
   if (l->fd == -1)
     janet_panicf("unable to open lock file '%s' - %s", lpath, strerror(errno));
@@ -136,7 +136,7 @@ static const JanetReg cfuns[] = {
      "Check if the lock object has aquired a lock."},
     {"release", flock_release,
      "(flock/release l)\n\n"
-     "release file lock."},
+     "Release file lock."},
     {NULL, NULL, NULL}};
 
 JANET_MODULE_ENTRY(JanetTable *env) { janet_cfuns(env, "flock", cfuns); }

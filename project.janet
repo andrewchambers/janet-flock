@@ -7,4 +7,5 @@
 
 (declare-native
     :name "flock"
-    :source ["flock.c"])
+    :source ["flock.c"]
+    :cflags ["-g"])

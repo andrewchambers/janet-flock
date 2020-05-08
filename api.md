@@ -2,7 +2,7 @@
 
 ## <function mod>/acquire
 type: cfunction
-[/flock.c#L57](/flock.c#L57)
+[flock.c#L57](flock.c#L57)
 ```
     (flock/acquire path wait-mode mode &opt flock)
     
@@ -13,7 +13,7 @@ type: cfunction
 
 ## <function mod>/locked?
 type: cfunction
-[/flock.c#L111](/flock.c#L111)
+[flock.c#L111](flock.c#L111)
 ```
     (flock/locked? l)
     
@@ -22,7 +22,7 @@ type: cfunction
 
 ## <function mod>/new
 type: cfunction
-[/flock.c#L48](/flock.c#L48)
+[flock.c#L48](flock.c#L48)
 ```
     (flock/new)
     
@@ -31,7 +31,7 @@ type: cfunction
 
 ## <function mod>/release
 type: cfunction
-[/flock.c#L117](/flock.c#L117)
+[flock.c#L117](flock.c#L117)
 ```
     (flock/release l)
     

@@ -1,6 +1,6 @@
 # flock
 
-## <function mod>/acquire
+## flock/acquire
 type: cfunction
 [flock.c#L57](flock.c#L57)
 ```
@@ -11,7 +11,7 @@ type: cfunction
     thelock was already held in an incompatible way.
 ```
 
-## <function mod>/locked?
+## flock/locked?
 type: cfunction
 [flock.c#L111](flock.c#L111)
 ```
@@ -20,7 +20,7 @@ type: cfunction
     Check if the lock object has aquired a lock.
 ```
 
-## <function mod>/new
+## flock/new
 type: cfunction
 [flock.c#L48](flock.c#L48)
 ```
@@ -29,7 +29,7 @@ type: cfunction
     Create a new flock that is not locked or associated with any file.
 ```
 
-## <function mod>/release
+## flock/release
 type: cfunction
 [flock.c#L117](flock.c#L117)
 ```

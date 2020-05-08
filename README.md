@@ -17,3 +17,6 @@ Simple file locking with flock for janet.
   ...)
 ```
 
+## API
+
+[here](API.md)

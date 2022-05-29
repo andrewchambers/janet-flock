@@ -1,5 +1,6 @@
 (declare-project
   :name "flock"
+  :description "Simple file locking with flock for Janet."
   :author "Andrew Chambers"
   :license "MIT"
   :url "https://github.com/andrewchambers/janet-flock"
